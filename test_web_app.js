@@ -142,7 +142,7 @@ app.get('/iframe_login', function (req, res) {
   res.render('iframe_login')
 })
 
-app.get('/iframe_signed_in', function (req, res) {
+app.post('/iframe_signed_in', function (req, res) {
   res = res.status(200)
   res.render('iframe_signed_in')
 })
