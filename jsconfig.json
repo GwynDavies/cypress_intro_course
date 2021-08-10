@@ -1,0 +1,8 @@
+  {
+    "compilerOptions": {
+      "strict": true,
+      "types": ["cypress"],
+      "moduleResolution": "node"
+    },
+    "include": ["./node_modules/cypress", "cypress/**/*.js"]
+  }
