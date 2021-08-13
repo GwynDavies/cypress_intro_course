@@ -28,35 +28,9 @@ describe("04 Locators", () => {
     cy.visit(page.url())
   })
 
-  it("Locate by 'containing text'", () => {
-    // Show how we are going to locate
-
-    cy.get(page.statusField())
-      .invoke("html", "Locate by 'containing text'").debug()
-
-    // Locate
-
-    cy.contains("Click Me")
-      .click()
-
-    cy.get(page.statusField())
-      .should("have.text", "BUTTON FOUND")
-  })
-
-  it("Locate by 'data-test-id'", () => {
-    // Show how we are going to locate
-
-    cy.get(page.statusField())
-      .invoke("html", "Locate by 'data-test-id'")
-
-    // Locate
-
-    cy.get('[data-test-id="my_test_id"]')
-      .click()
-
-    cy.get(page.statusField())
-      .should("have.text", "BUTTON FOUND")
-  })
+  /*
+   * ID
+   */
 
   it("Locate by 'id'", () => {
     // Show how we are going to locate
@@ -73,8 +47,34 @@ describe("04 Locators", () => {
       .should("have.text", "BUTTON FOUND")
   })
 
-  it("Locate by 'element type'", () => {
+  /*
+   * Class
+   */
+
+  it("Locate by 'class'", () => {
     // Show how we are going to locate
+
+    cy.get(page.statusField())
+      .invoke("html", "Locate by 'class'")
+
+    // Locate
+
+    cy.get('.btn-outline-primary')
+      .click()
+
+    cy.get(page.statusField())
+      .should("have.text", "BUTTON FOUND")
+  })
+
+  /*
+   * Element type (button)
+   */
+
+  it("Locate by 'element type' (have to use additional locators as there are 2 buttons)", () => {
+    // Show how we are going to locate
+    //
+    // Use element type (button), but also have to use additional locators
+    // as there are 2 buttone on the page
 
     cy.get(page.statusField())
       .invoke("html", "Locate by 'element type'")
@@ -88,11 +88,15 @@ describe("04 Locators", () => {
       .should("have.text", "BUTTON FOUND")
   })
 
-  it("Locate by 'parent id AND element type'", () => {
+  /*
+   * Combination - Parent ID and Element type
+   */
+
+  it("Locate by '(direct) parent id AND element type'", () => {
     // Show how we are going to locate
 
     cy.get(page.statusField())
-      .invoke("html", "Locate by 'parent id AND element type'")
+      .invoke("html", "Locate by (direct)'parent id AND element type'")
 
     // Locate
 
@@ -102,4 +106,64 @@ describe("04 Locators", () => {
     cy.get(page.statusField())
       .should("have.text", "BUTTON FOUND")
   })
+
+  /*
+   * Containing text
+   */
+
+  it("Locate by 'containing text'", () => {
+    // Show how we are going to locate
+
+    cy.get(page.statusField())
+      .invoke("html", "Locate by 'containing text'")
+
+    // Locate
+
+    cy.contains("Click Me")
+      .click()
+
+    cy.get(page.statusField())
+      .should("have.text", "BUTTON FOUND")
+  })
+
+  /*
+   * Data attribute 
+   */
+
+  it("Locate by 'data attribute'", () => {
+    // Show how we are going to locate
+
+    cy.get(page.statusField())
+      .invoke("html", "Locate by 'data attribute'")
+
+    // Locate
+
+    cy.get('[data-test-id="my_test_id"]')
+      .click()
+
+    cy.get(page.statusField())
+      .should("have.text", "BUTTON FOUND")
+  })
+
+  /*
+   * Eq - element index 
+   */
+
+    it("Locate by 'element index' (eq) - there are 2 buttons", () => {
+      // Show how we are going to locate
+      //
+      // There are 2 buttons, get the 2nd button (index starts at 0)
+
+      cy.get(page.statusField())
+        .invoke("html", "Locate by 'element index' (1) as there are 2 buttons - starts at zero")
+  
+      // Locate
+  
+      //cy.get('main div button')
+      cy.get('button').eq(1)
+        .click()
+  
+      cy.get(page.statusField())
+        .should("have.text", "BUTTON FOUND")
+    })
 })
