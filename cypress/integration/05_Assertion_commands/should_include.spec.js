@@ -28,12 +28,44 @@ describe("05 Assertions", () => {
   })
 
   it("Should include", () => {
-    // text
+    // ... include a text value
 
     cy.get('#div1')
       .should('include.text', 'address')
 
     cy.get('#div1')
       .should('not.include.text', 'location')
+  })
+
+  it("Should includes/contain/contains (All aliases of include)", () => {
+    /*
+     * includes
+     */
+
+    cy.get('#div1')
+      .should('includes.text', 'address')
+
+    cy.get('#div1')
+      .should('not.includes.text', 'location')
+
+    /*
+     * contain
+     */
+
+    cy.get('#div1')
+      .should('contain.text', 'address')
+
+    cy.get('#div1')
+      .should('not.contain.text', 'location')
+
+    /*
+     * contains
+     */
+
+    cy.get('#div1')
+      .should('contains.text', 'address')
+
+    cy.get('#div1')
+      .should('not.contains.text', 'location')
   })
 })
