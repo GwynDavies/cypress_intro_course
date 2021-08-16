@@ -55,6 +55,14 @@ describe("06 Web forms", () => {
     cy.get(page.passwordField())
       .should('have.value', 'secret')
 
+    // Search
+
+    cy.get(page.searchField())
+      .type('do you have item x')
+
+    cy.get(page.searchField())
+      .should('have.value', 'do you have item x')
+
     // Number
 
     cy.get(page.numberField())
@@ -73,7 +81,9 @@ describe("06 Web forms", () => {
     //  Date ... YYYY-MM-DD
 
     cy.get(page.dateField())
-      .type('1970-01-01')
+      .type('1970-01-01', {
+        force: true
+      }) // Required for Firefox
 
     cy.get(page.dateField())
       .should('have.value', '1970-01-01')
@@ -83,7 +93,9 @@ describe("06 Web forms", () => {
     // Where HH is 00-23, mm is 00-59, ss is 00-59, and SSS is 000-999
 
     cy.get(page.timeField())
-      .type('22:11:00')
+      .type('22:11:00', {
+        force: true
+      }) // Required for Firefox
 
     cy.get(page.timeField())
       .should('have.value', '22:11:00')
@@ -181,18 +193,24 @@ describe("06 Web forms", () => {
 
     cy.get(page.rangeField()).focus()
 
+    // Set to 25
     cy.get(page.rangeField())
       .then(element => (element.val("25")))
       .trigger("change", {
         force: true
       }) //Firefox requires force true
-      .should('have.value', "25")
 
+    cy.get(page.rangeField())
+      .should('have.value', "25")  
+
+    // Set to 75
     cy.get(page.rangeField())
       .then(element => (element.val("75")))
       .trigger("change", {
         force: true
       }) //Firefox requires force true
+
+    cy.get(page.rangeField())
       .should('have.value', "75")
 
     // Submit the web form

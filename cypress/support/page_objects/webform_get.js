@@ -1,6 +1,7 @@
 const textLocator = "#text"
 const emailLocator = "#email"
 const passwordLocator = "#password"
+const searchLocator = "#search"
 const numberLocator = "#number"
 const phoneLocator = "#phone"
 const dateLocator = "#date"
@@ -30,6 +31,10 @@ function emailField() {
 
 function passwordField() {
   return passwordLocator
+}
+
+function searchField() {
+  return searchLocator
 }
 
 function numberField() {
@@ -93,6 +98,7 @@ export {
   textField,
   emailField,
   passwordField,
+  searchField,
   numberField,
   phoneField,
   dateField,
