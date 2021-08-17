@@ -29,13 +29,16 @@ describe("07 Navigation - Go and reload", () => {
         cy.visit('/')
     })
 
-    // NavBar 'Locators'
+    it("I can navigate to 'Locators', and go back, forward and reload", () => {
 
-    it("NavBar 'Locators'", () => {
-        cy.get(page.navBarField())
+        // Get the navbar
+        // ... then get DOM element that contains text 'Locators'
+        // ... and click it
+        cy.get(page.navBar())
             .contains('Locators')
             .click()
 
+        // The page should have changed to 'locators' as a result
         cy.url()
             .should('contain', 'locators')
 
@@ -57,6 +60,7 @@ describe("07 Navigation - Go and reload", () => {
 
         cy.go('forward')
 
+        // The page should have changed back to 'locators'
         cy.url()
             .should('contain', 'locators')
 
@@ -64,8 +68,8 @@ describe("07 Navigation - Go and reload", () => {
 
         cy.reload()
 
+        // The page should still show as 'locators'
         cy.url()
             .should('contain', 'locators')
-
     })
 })

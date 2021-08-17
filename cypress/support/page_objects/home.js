@@ -1,6 +1,7 @@
-const navBarLocator = '.navbar-nav'
+const navBarLocator = 'nav'
 const navBarAssertionsDropDownLocator = '#assertionsDropdown'
 const navBarWebFormsDropDownLocator = '#webFormsDropdown'
+
 const browserTypeButtonLocator = '#browser_type'
 const browserTypesLocator = '#browser_div'
 const browserChromeTrueFalseLocator = '.output-chrome'
@@ -13,7 +14,7 @@ function url() {
   return "/"
 }
 
-function navBarField() {
+function navBar() {
   return navBarLocator
 }
 
@@ -75,7 +76,7 @@ function browserOperaValueField() {
 
 export {
   url,
-  navBarField,
+  navBar,
   navBarAssertionsDropDownField,
   navBarWebFormsDropDownField,
   browserTypeButton,

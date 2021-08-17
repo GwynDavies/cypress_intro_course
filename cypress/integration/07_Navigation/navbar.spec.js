@@ -31,8 +31,8 @@ describe("07 Navigation - NavBar", () => {
 
     // NavBar - 'Home'
 
-    it("NavBar 'Home'", () => {
-        cy.get(page.navBarField())
+    it("NavBar starts off at 'Home'", () => {
+        cy.get(page.navBar())
             .contains('Home')
             .click()
 
@@ -49,8 +49,8 @@ describe("07 Navigation - NavBar", () => {
 
     // NavBar 'Locators'
 
-    it("NavBar 'Locators'", () => {
-        cy.get(page.navBarField())
+    it("I can navigate to the menu for 'Locators'", () => {
+        cy.get(page.navBar())
             .contains('Locators')
             .click()
 
@@ -60,7 +60,7 @@ describe("07 Navigation - NavBar", () => {
 
     // NavBar - Assertions
 
-    it("NavBar Assertions Dropdown - 'should be'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should be'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -71,7 +71,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'should-be')
     })
 
-    it("NavBar Assertions Dropdown - 'should have'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should have'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -82,7 +82,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'should-have')
     })
 
-    it("NavBar Assertions Dropdown - 'should equal'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should equal'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -93,7 +93,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'should-equal')
     })
 
-    it("NavBar Assertions Dropdown - 'should match'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should match'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -104,7 +104,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'should-match')
     })
 
-    it("NavBar Assertions Dropdown - 'should contain'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should contain'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -115,7 +115,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'should-contain')
     })
 
-    it("NavBar Assertions Dropdown - 'should include'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should include'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -126,7 +126,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'should-include')
     })
 
-    it("NavBar Assertions Dropdown - 'should exist'", () => {
+    it("I can navigate to the menu for Assertions Dropdown - 'should exist'", () => {
         cy.get(page.navBarAssertionsDropDownField())
             .click()
 
@@ -139,7 +139,7 @@ describe("07 Navigation - NavBar", () => {
 
     // NavBar - Webforms
 
-    it("NavBar Web Forms  Dropdown - 'Web form - GET'", () => {
+    it("I can navigate to the menu for Web Forms Dropdown - 'Web form - GET'", () => {
         cy.get(page.navBarWebFormsDropDownField())
             .click()
 
@@ -150,7 +150,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'webform-get')
     })
 
-    it("NavBar Web Forms  Dropdown - 'Web form - POST'", () => {
+    it("I can navigate to the menu for Web Forms Dropdown - 'Web form - POST'", () => {
         cy.get(page.navBarWebFormsDropDownField())
             .click()
 
@@ -161,7 +161,7 @@ describe("07 Navigation - NavBar", () => {
             .should('contain', 'webform-post')
     })
 
-    it("NavBar Web Forms  Dropdown - 'Web form - File UPLOAD'", () => {
+    it("I can navigate to the menu for Web Forms Dropdown - 'Web form - File UPLOAD'", () => {
         cy.get(page.navBarWebFormsDropDownField())
             .click()
 
@@ -174,8 +174,8 @@ describe("07 Navigation - NavBar", () => {
 
     // NavBar 'Dialogs'
 
-    it("NavBar 'Dialogs'", () => {
-        cy.get(page.navBarField())
+    it("I can navigate to the menu for 'Dialogs'", () => {
+        cy.get(page.navBar())
             .contains('Dialogs')
             .click()
 
@@ -185,8 +185,8 @@ describe("07 Navigation - NavBar", () => {
 
     // NavBar 'IFrame'
 
-    it("NavBar 'IFrame'", () => {
-        cy.get(page.navBarField())
+    it("I can navigate to the menu for 'IFrame'", () => {
+        cy.get(page.navBar())
             .contains('IFrame')
             .click()
 
