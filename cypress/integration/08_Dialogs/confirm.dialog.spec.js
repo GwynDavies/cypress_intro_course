@@ -21,34 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-describe("Dialogs", () => {
+describe("Dialogs - Confirm", () => {
 
   before(() => {
     cy.visit('/dialogs')
   })
 
-  // Alert
+  it("I can handle a Confirm dialog - Click 'OK'", () => {
+    /* 
+     * Cypress automatically accepts Confirm dialogs for you by default
+     */
 
-  it("Alert dialog", () => {
-    // Setup assertion to confirm dialog was clicked, and it had the expected text
+    // Click button 'Confirm dialog' to trigger the dialog
 
-    cy.on("window:alert", (dialogText) => {
-      expect(dialogText)
-        .to.equal("Triggered Alert Dialog")
-    })
-
-    // Click button 'Alert dialog' to trigger the dialog
-
-    cy.contains("Alert dialog")
+    cy.contains("Confirm dialog")
       .click()
+
+    // Dialog Response should equal true (OK), as default is to simulate user clicking 'OK'
+
+    cy.get('#dialogResponse')
+      .trigger('change')
+      .invoke('text')
+      .should('equal', 'true')
   })
 
-  // Confirm
+  it("I can handle a Confirm dialog - Click 'OK' and check dialog text", () => {
+    /* 
+     * Cypress automatically accepts Confirm dialogs for you by default
+     *
+     * However you can intercept the handling with cy.on for event "window:confirm", 
+     * and check the dialog text was as expected
+     * 
+     * Then return 'true' to simulate the user clicking 'OK'
+     */
 
-  it("Confirm dialog - Click 'OK'", () => {
-    // Setup assertion to confirm dialog was clicked, and it had the expected text
-
-    cy.on("window:confirm", (dialogText) => {
+    cy.on("window:confirm", dialogText => {
       expect(dialogText)
         .to.equal("Triggered Confirm Dialog")
       // Simulate clicking 'OK' (true)
@@ -60,9 +67,7 @@ describe("Dialogs", () => {
     cy.contains("Confirm dialog")
       .click()
 
-    //cy.pause()
-
-    // Dialog Response should equal true, as we clicked 'OK'
+    // Dialog Response should equal true, as we simulated clicking 'OK'
 
     cy.get('#dialogResponse')
       .trigger('change')
@@ -70,13 +75,19 @@ describe("Dialogs", () => {
       .should('equal', 'true')
   })
 
-  it("Confirm dialog - Click 'Cancel'", () => {
-    // Setup assertion to confirm dialog was clicked, and it had the expected text
-
-    cy.on("window:confirm", (dialogText) => {
+  it("I can handle a Confirm dialog - Click 'Cancel' and check dialog text", () => {
+    /* 
+     * Cypress automatically accepts Confirm dialogs for you by default
+     *
+     * However you can intercept the handling with cy.on for event "window:confirm", 
+     * and check the dialog text was as expected
+     * 
+     * Then return 'false' to simulate the user clicking 'Cancel'
+     */
+    cy.on("window:confirm", dialogText => {
       expect(dialogText)
         .to.equal("Triggered Confirm Dialog")
-      // Simulate clicking 'Cancel' (false)
+      // Simulate user clicking 'Cancel' (false)
       return false
     })
 
@@ -85,36 +96,11 @@ describe("Dialogs", () => {
     cy.contains("Confirm dialog")
       .click()
 
-    //cy.pause()
-
-    // Dialog Response should equal true, as we clicked 'OK'
+    // Dialog Response should equal false, as we simulated clicking 'Cancel'
 
     cy.get('#dialogResponse')
       .trigger('change')
       .invoke('text')
       .should('equal', 'false')
-  })
-
-  // Prompt
-
-  it("Prompt dialog", () => {
-    cy.window().then((win) => {
-
-      // Simulate response from the user
-      cy.stub(win, "prompt")
-        .returns("This is my answer.")
-    })
-
-    // Click button 'Confirm dialog' to trigger the dialog
-
-    cy.contains("Prompt dialog")
-      .click()
-
-    // Dialog Response should equal to 'This is my answer.', which was the simulated response 
-
-    cy.get('#dialogResponse')
-      .trigger('change')
-      .invoke('text')
-      .should('equal', 'This is my answer.')
   })
 })
