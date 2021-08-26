@@ -25,6 +25,7 @@
   "homepage": "https://gitlab.com/gwyn_davies/cypress_intro_course#readme",
   "devDependencies": {
     "cypress": "^8.3.0",
+    "cypress-iframe": "^1.0.1",
     "socket.io": "^4.1.2",
     "socket.io-client": "^4.1.2"
   },

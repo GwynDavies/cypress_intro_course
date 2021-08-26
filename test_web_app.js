@@ -137,14 +137,9 @@ app.get('/iframe', function (req, res) {
   res.render('iframe')
 })
 
-app.get('/iframe_login', function (req, res) {
-  res.sendFile(path.join(__dirname, '/site2/login_iframe.html'))
-  res.render('iframe_login')
-})
-
-app.post('/iframe_signed_in', function (req, res) {
+app.get('/iframe_email_subscribe', function (req, res) {
   res = res.status(200)
-  res.render('iframe_signed_in')
+  res.render('iframe_email_subscribe')
 })
 
 // ----------------------------------------------------------------------

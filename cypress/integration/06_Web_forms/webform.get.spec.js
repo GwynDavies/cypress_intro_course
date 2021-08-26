@@ -80,13 +80,23 @@ describe("06 Web forms", () => {
 
     //  Date ... YYYY-MM-DD
 
-    cy.get(page.dateField())
-      .type('1970-01-01', {
-        force: true
-      }) // Required for Firefox
+    //cy.get(page.dateField())
+    //  .type('1970-01-01', {
+    //    force: true
+    //  }) // Required for Firefox
 
-    cy.get(page.dateField())
-      .should('have.value', '1970-01-01')
+    //cy.get(page.dateField()).then(el=>{
+    //  let position = el.position();
+    //  cy.log( "left: " + position.left + ", top: " + position.top + ", right: "+position.right );
+    //  })
+  //cy.get('#date').focus().click(20, 22, { force: true })
+  //cy.get('#date').focus().click(210, 22, { force: true })
+  //cy.get('#date').click()
+  //https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
+  cy.get('#date').type('1961-08-21',{force:true})
+
+  //  cy.get(page.dateField())
+  //    .should('have.value', '1970-01-01')
 
     // Typing into a time input with cy.type() requires a valid time with the format 
     // HH:mm, HH:mm:ss or HH:mm:ss.SSS, 

@@ -1,32 +1,59 @@
-const loginUserNameLocator = 'input[name="username"]'
-const loginUserPasswordLocator = 'input[name="password"]'
-const loginButtonLocator = '#loginBtn'
-const loginMessageLocator = 'h4'
+const internalIframeLocator = '#IFrameContact'
+const internalIframeSubscribedMessageLocator = '#subscribed_mesg'
+const internalIframeEmailLocator = '#email'
+const internalIframeSubscribeButtonLocator = '#subscribeBtn'
+
+const externalIframeLocator = '#IFrameYouTube'
+const externalIframeInitialPlayButtonLocator = '.ytp-large-play-button'
+const externalIframePauseButtonLocator = '[title="Pause (k)"]'
 
 function url() {
   return "/iframe"
 }
 
-function iframeLoginUserNameField() {
-  return loginUserNameLocator
+/*
+ * Internal IFrame
+ */
+
+function internalIframe() {
+  return internalIframeLocator
 }
 
-function iframeLoginUserPasswordField() {
-  return loginUserPasswordLocator
+function internalIframeSubscribedMessage() {
+  return internalIframeSubscribedMessageLocator
 }
 
-function iframeLoginButton() {
-  return loginButtonLocator
+function internalIframeEmailField() {
+  return internalIframeEmailLocator
 }
 
-function iframeLoginMessageField() {
-  return loginMessageLocator
+function internalIframeSubscribeButton() {
+  return internalIframeSubscribeButtonLocator
+}
+
+/*
+ * External IFrame
+ */
+
+function externalIframe() {
+  return externalIframeLocator
+}
+
+function externalIframeInitialPlayButton() {
+  return externalIframeInitialPlayButtonLocator
+}
+
+function externalIframePauseButton() {
+  return externalIframePauseButtonLocator
 }
 
 export {
   url,
-  iframeLoginUserNameField,
-  iframeLoginUserPasswordField,
-  iframeLoginButton,
-  iframeLoginMessageField
+  internalIframe,
+  internalIframeSubscribedMessage,
+  internalIframeEmailField,
+  internalIframeSubscribeButton,
+  externalIframe,
+  externalIframeInitialPlayButton,
+  externalIframePauseButton
 }

@@ -21,44 +21,78 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+require('cypress-iframe')
 const page = require("../../support/page_objects/iframe")
 
-describe("Iframe", () => {
+describe("Iframe usage", () => {
 
-  function getIframe() {
-    return cy.get('iframe')
-      .its('0.contentDocument')
-      .its('body')
-  }
-
-  it("IFrame", () => {
+  it("Is possible to use an internal iframe", () => {
     cy.visit(page.url())
 
-    // Type user name into IFrame
+    // Check the iframe loaded
+    cy.frameLoaded(page.internalIframe(), {
+      timeout: 10000
+    })
 
-    getIframe()
-      .find(page.iframeLoginUserNameField())
-      .type('myusername')
+    // Fill out contact form
+    cy.enter(page.internalIframe()).then(getBody => {
 
-    // Type user password into IFrame
+      // Check 'subscribed' message is not visible
+      getBody()
+        .find(page.internalIframeSubscribedMessage())
+        .should('not.be.visible')
 
-    getIframe()
-      .find(page.iframeLoginUserPasswordField())
-      .type('mypassword')
+      // Set email address and click 'Subscribe' button
+      const testEmail = 'fname.lname@localhost.com'
+      getBody()
+        .find(page.internalIframeEmailField())
+        .should('be.visible')
+        .type(testEmail)
 
-    // Click IFrame login button
+      // Click "Subscribe" button
+      getBody()
+        .find(page.internalIframeSubscribeButton())
+        .click()
 
-    getIframe()
-      .find(page.iframeLoginButton())
-      .click()
-  
-    // Check we got the 'simulated successful login'
+      // Check 'subscribed' message is now visible and has correct message
+      getBody()
+        .find(page.internalIframeSubscribedMessage())
+        .should('be.visible')
+      getBody()
+        .find(page.internalIframeSubscribedMessage())
+        .then(el => el.text()).should('be.equal', 'You are now subscribed!')
+    })
+  })
 
-    cy.wait(2500) // Sometimes the iframe has to be allowed to finish updating
+  /*
+   * Currently does not work for FireFox
+   */
+  it("Is possible to use an external iframe", () => {
+    if (Cypress.isBrowser('firefox')) {
+      cy.log("!!! This test currently does not run under FireFox !!!")
+    } else {
+      cy.visit(page.url())
 
-    getIframe()
-      .find(page.iframeLoginMessageField())
-      .invoke('text')
-      .should('equal', 'Congratulations you are signed in')
+      // Check the iframe loaded
+      cy.frameLoaded(page.externalIframe(), {
+        timeout: 30000
+      })
+
+      cy.enter(page.externalIframe()).then(getBody => {
+        // Press large centered play button
+        getBody()
+          .find(page.externalIframeInitialPlayButton())
+          .should('be.visible')
+          .click()
+
+        // Give it a chance to play some discernable content
+        cy.wait(10000)
+
+        // Press pause button
+        getBody()
+          .find(page.externalIframePauseButton())
+          .click()
+      })
+    }
   })
 })
